@@ -1,0 +1,64 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/saps-engine:
+      branch: develop
+      repo: https://github.com/EOSC-synergy/saps-engine
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: 1.7.0-only_im_client
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/EOSC-synergy/saps-engine git:
+        commands:
+        - /usr/bin/env sh .sqa/script.gamy-amaranth-barb.sh
+        container: qc.acc_clammy-platinum-eel
+  QC.Doc:
+    repos:
+      github.com/EOSC-synergy/saps-engine find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.scaly-linen-rabbit.sh
+        container: qc.doc_shaggy-amethyst-chihuahua
+      github.com/EOSC-synergy/saps-engine git:
+        commands:
+        - /usr/bin/env sh .sqa/script.shabby-chocolate-urchin.sh
+        container: qc.doc_baggy-amber-schnauzer
+      github.com/EOSC-synergy/saps-engine markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.breezy-goldenrod-reindeer.sh
+        container: qc.doc_geeky-smalt-ostrich
+  QC.FAIR:
+    repos:
+      github.com/EOSC-synergy/saps-engine F-UJI:
+        commands:
+        - /usr/bin/env sh .sqa/script.flimsy-amaranth-fly.sh
+        container: qc.fair_snippy-chestnut-oyster
+  QC.Lic:
+    repos:
+      github.com/EOSC-synergy/saps-engine licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.lovely-tangerine-olm.sh
+        container: qc.lic_wimpy-wisteria-swan
+  QC.Sec:
+    repos:
+      github.com/EOSC-synergy/saps-engine bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.cloudy-wheat-goat.sh
+        container: qc.sec_gamy-ecru-wombat
+  QC.Sty:
+    repos:
+      github.com/EOSC-synergy/saps-engine flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.grumpy-carmine-fousek.sh
+        container: qc.sty_tacky-coral-booby
+  QC.Ver:
+    repos:
+      github.com/EOSC-synergy/saps-engine get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.scanty-thistle-monkey.sh
+        container: qc.ver_stuffy-myrtle-dragonfly
+timeout: 1800
